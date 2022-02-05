@@ -1,5 +1,4 @@
 # YOLOv5 general utils
-
 import glob
 import logging
 import math
@@ -16,10 +15,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torchvision
-import yaml
-
 from my_google_utils import gsutil_getsize
-from metrics import fitness
 from my_torch_utils import init_torch_seeds
 
 # Settings
