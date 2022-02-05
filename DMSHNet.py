@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from thop import profile
-from torchsummary import summary
+# from torchsummary import summary
 
 def conv(in_channels, out_channels, kernel_size,  padding = True, dilation = True,  stride = True, bias = True):
   return  nn.Conv2d(in_channels, out_channels, kernel_size, stride = stride,  padding = kernel_size//2, dilation = dilation, bias = bias)
