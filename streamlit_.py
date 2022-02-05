@@ -25,6 +25,8 @@ def get_detection_folder():
     '''
     return max(get_subdirs(os.path.join('runs', 'detect')), key=os.path.getmtime)
 
+if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
 
 if __name__ == '__main__':
 
