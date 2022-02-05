@@ -37,8 +37,9 @@ device_ids = [Id for Id in range(torch.cuda.device_count())]
 DMSHN = DMSHN().to(device)
 DMSHN= torch.nn.DataParallel(DMSHN, device_ids=device_ids)
 
-save_dir = Path(increment_path(Path(opt.project) / opt.name,
-                               exist_ok=opt.exist_ok))  # increment run
+save_dir = r"runs/detect/" 
+# save_dir = Path(increment_path(Path(opt.project) / opt.name,
+#                                exist_ok=opt.exist_ok))  # increment run
 def detect(opt , task):
     source, imgsz = opt.source, opt.img_size
     if task == 'derain':
