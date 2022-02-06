@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--source', type=str,
-                        default='data/images', help='source')
+                        default='images', help='source')
     parser.add_argument('--img-size', type=int, default=640,
                         help='inference size (pixels)')
     parser.add_argument('--augment', action='store_true',
@@ -75,8 +75,8 @@ if __name__ == '__main__':
             with st.spinner(text='资源加载中...'):
                 st.sidebar.image(uploaded_file)
                 picture = Image.open(uploaded_file)
-                picture = picture.save(f'data/images/{uploaded_file.name}')
-                opt.source = f'data/images/{uploaded_file.name}'
+                picture = picture.save(f'images/{uploaded_file.name}')
+                opt.source = f'images/{uploaded_file.name}'
         else:
             is_valid = False
     # else:
