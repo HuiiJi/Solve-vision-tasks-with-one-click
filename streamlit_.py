@@ -25,12 +25,6 @@ def get_detection_folder():
     '''
     return max(get_subdirs(os.path.join('runs', 'detect')), key=os.path.getmtime)
 
-if not os.path.exists(save_dir):
-                os.makedirs(save_dir)
-if not os.path.exists('data'):
-                os.makedirs('data')
-if not os.path.exists('images'):
-                os.makedirs('images2')
 if __name__ == '__main__':
 
     st.title('光军出品，欢迎使用！')
