@@ -25,11 +25,23 @@ def get_detection_folder():
     '''
     return max(get_subdirs(os.path.join('runs', 'detect')), key=os.path.getmtime)
 
-if __name__ == '__main__':
 
-    st.title('光军出品，欢迎使用！')
-    st.subheader("·您可以通过左侧的文件上传来选择原件。"
-                 "·由于版本原因暂时只能提供在线浏览")
+if __name__ == '__main__':
+    # 展示一级标题
+    st.image('header.jpg')
+
+
+    st.subheader('1. 使用')
+    st.write('·您可以使用左侧来进行文件选择并上传')
+    code1 = '''You can use the left side to select and upload files'''
+    st.code(code1, language='bash')
+    st.subheader('2. 功能')
+    st.write('·当前可实现图像去雾、图像去噪和图像去雨')
+    code2 = 'Vision tasks: dehaze, denoisy, derain'
+    st.code(code2, language='bash')
+    st.subheader('3. 运行')
+
+
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--source', type=str,
@@ -50,9 +62,10 @@ if __name__ == '__main__':
     opt = parser.parse_args()
 
 
-    source = ("图片检测", "视频检测(正在维护)" )
+    source = ("图片上传", "视频上传(正在维护)" )
     source_index = st.sidebar.selectbox("选择输入", range(
         len(source)), format_func=lambda x: source[x])
+    cloumns1, cloumns2= st.columns(2)
 
     if source_index == 0:
         uploaded_file = st.sidebar.file_uploader(
@@ -62,8 +75,8 @@ if __name__ == '__main__':
             with st.spinner(text='资源加载中...'):
                 st.sidebar.image(uploaded_file)
                 picture = Image.open(uploaded_file)
-                picture = picture.save(f'images/{uploaded_file.name}')
-                opt.source = f'images/{uploaded_file.name}'
+                picture = picture.save(f'data/images/{uploaded_file.name}')
+                opt.source = f'data/images/{uploaded_file.name}'
         else:
             is_valid = False
     # else:
@@ -78,8 +91,9 @@ if __name__ == '__main__':
     #     else:
     #         is_valid = False
     if is_valid:
-        print('valid')
-        if st.button('图像去雨'):
+        option = st.selectbox("加载文件成功", ['请选择任务', '图像去雾', '图像去雨', '图像去噪'])
+
+        if option == "图像去雨":
             detect(opt, task = 'derain')
             if source_index == 0:
                 with st.spinner(text='Preparing Images'):
@@ -87,13 +101,12 @@ if __name__ == '__main__':
                     st.image(str(save_dir) + '.jpg')
                     st.balloons()
 
-        if st.button('图像去噪'):
+        if option == "图像去噪":
             detect(opt, task = 'denoisy')
             if source_index == 0:
                 with st.spinner(text='Preparing Images'):
                     # for img in os.listdir(get_detection_folder()):
                     st.image(str(save_dir) + '.jpg')
-
                     st.balloons()
             # else:
             #     with st.spinner(text='Preparing Video'):
@@ -102,13 +115,12 @@ if __name__ == '__main__':
             #
             #         st.balloons()
 
-        if st.button('图像去雾'):
+        if option == "图像去雾":
             detect(opt, task='dehaze')
             if source_index == 0:
                 with st.spinner(text='Preparing Images'):
                     # for img in os.listdir(get_detection_folder()):
                     st.image(str(save_dir) + '.jpg')
-
                     st.balloons()
             # else:
             #     with st.spinner(text='Preparing Video'):
