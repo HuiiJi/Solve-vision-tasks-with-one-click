@@ -178,7 +178,7 @@ class LoadImages:  # for inference
             # Read image
             self.count += 1
             path = path.split('\\')[-1]
-            img0 = cv2.imread(f'images/' + path )  # BGR
+            img0 = cv2.imread(f'data/images/' + path )  # BGR
             assert img0 is not None, 'Image Not Found ' + path
             # print(f'image {self.count}/{self.nf} {path}: ', end='')
 
