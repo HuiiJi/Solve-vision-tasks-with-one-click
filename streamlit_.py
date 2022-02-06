@@ -100,6 +100,13 @@ if __name__ == '__main__':
                     # for img in os.listdir(get_detection_folder()):
                     st.image(str(save_dir) + '.jpg')
                     st.balloons()
+                with open(str(save_dir) + '.jpg', "rb") as file:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=file,
+                        file_name=str(save_dir) + '.jpg',
+                        mime=str(save_dir) + '.jpg'
+                    )
 
         if option == "图像去噪":
             detect(opt, task = 'denoisy')
@@ -108,6 +115,13 @@ if __name__ == '__main__':
                     # for img in os.listdir(get_detection_folder()):
                     st.image(str(save_dir) + '.jpg')
                     st.balloons()
+                with open(str(save_dir) + '.jpg', "rb") as file:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=file,
+                        file_name=str(save_dir) + '.jpg',
+                        mime=str(save_dir) + '.jpg'
+                    )
             # else:
             #     with st.spinner(text='Preparing Video'):
             #         for vid in os.listdir(get_detection_folder()):
@@ -122,6 +136,13 @@ if __name__ == '__main__':
                     # for img in os.listdir(get_detection_folder()):
                     st.image(str(save_dir) + '.jpg')
                     st.balloons()
+                with open(str(save_dir) + '.jpg', "rb") as file:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=file,
+                        file_name=str(save_dir) + '.jpg',
+                        mime=str(save_dir) + '.jpg'
+                    )
             # else:
             #     with st.spinner(text='Preparing Video'):
             #         for vid in os.listdir(get_detection_folder()):
