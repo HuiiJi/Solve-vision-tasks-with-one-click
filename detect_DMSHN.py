@@ -14,7 +14,7 @@ from my_general import check_img_size, check_requirements, increment_path
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=str,
-                    default='data/images', help='source')
+                    default='images', help='source')
 parser.add_argument('--img-size', type=int, default=640,
                     help='inference size (pixels)')
 parser.add_argument('--augment', action='store_true',
@@ -70,4 +70,4 @@ def detect(opt , task):
 
 if __name__ == '__main__':
     # check_requirements(exclude=('pycocotools', 'thop'))
-    detect(opt)
+    detect(opt， opt.task)
