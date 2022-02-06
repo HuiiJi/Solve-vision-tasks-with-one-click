@@ -70,4 +70,4 @@ def detect(opt , task):
 
 if __name__ == '__main__':
     # check_requirements(exclude=('pycocotools', 'thop'))
-    detect(opt， opt.task)
+    detect(opt, opt.task)
