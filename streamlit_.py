@@ -32,14 +32,14 @@ if __name__ == '__main__':
 
 
     st.subheader('1. 使用')
-    st.write('·您可以使用左侧来进行文件选择并上传')
+    st.write('·您可以使用左侧栏来进行文件上传')
     code1 = '''You can use the left side to select and upload files'''
     st.code(code1, language='bash')
     st.subheader('2. 功能')
     st.write('·当前可实现图像去雾、图像去噪和图像去雨')
     code2 = 'Vision tasks: dehaze, denoisy, derain'
     st.code(code2, language='bash')
-    st.subheader('3. 运行')
+    st.subheader('3. 运行区')
 
 
 
