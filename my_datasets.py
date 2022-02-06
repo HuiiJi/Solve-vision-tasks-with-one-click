@@ -177,6 +177,7 @@ class LoadImages:  # for inference
         else:
             # Read image
             self.count += 1
+            path = path.split('\\')[-1]
      
             img0 = cv2.imread(f'images/' + path )  # BGR
             assert img0 is not None, 'Image Not Found ' + path
