@@ -42,11 +42,11 @@ save_dir = Path(increment_path(Path(opt.project) / opt.name,
 def detect(opt , task):
     source, imgsz = opt.source, opt.img_size
     if task == 'derain':
-        DMSHN.load_state_dict(torch.load('snapshots/DMSHN_derain.pth'))
+        DMSHN.load_state_dict(torch.load('DMSHN_derain.pth'))
     if task == 'denosiy':
-        DMSHN.load_state_dict(torch.load('snapshots/DMSHN_denoisy.pth'))
+        DMSHN.load_state_dict(torch.load('DMSHN_denoisy.pth'))
     if task == 'dehaze':
-        DMSHN.load_state_dict(torch.load('snapshots/DMSHN_dehaze.pth'))
+        DMSHN.load_state_dict(torch.load('DMSHN_dehaze.pth'))
     stride = 32
     imgsz = check_img_size(imgsz, s=stride)  # check img_size
     dataset = LoadImages(source, img_size=imgsz, stride=stride)
