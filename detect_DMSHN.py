@@ -43,7 +43,7 @@ def detect(opt , task):
     source, imgsz = opt.source, opt.img_size
     if task == 'derain':
         DMSHN.load_state_dict(torch.load('DMSHN_derain.pth',  map_location='cpu'))
-    if task == 'denosiy':
+    if task == 'denoisy':
         DMSHN.load_state_dict(torch.load('DMSHN_denoisy.pth',  map_location='cpu'))
     if task == 'dehaze':
         DMSHN.load_state_dict(torch.load('DMSHN_dehaze.pth',  map_location='cpu'))
