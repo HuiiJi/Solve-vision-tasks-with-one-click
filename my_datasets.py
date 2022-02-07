@@ -186,7 +186,7 @@ class LoadImages:  # for inference
         img = letterbox(img0, self.img_size, stride=self.stride)[0]
 
         # Convert
-        img0 = cv2.resize(img0, (512, 512))
+        img = cv2.resize(img, (512, 512))
         img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
         img = np.ascontiguousarray(img)
 
