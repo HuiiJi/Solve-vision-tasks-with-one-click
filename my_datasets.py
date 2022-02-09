@@ -183,7 +183,7 @@ class LoadImages:  # for inference
             # print(f'image {self.count}/{self.nf} {path}: ', end='')
 
         # Padded resize
-        img = letterbox(img0, self.img_size, stride=self.stride)[0]
+#         img = letterbox(img0, self.img_size, stride=self.stride)[0]
 
         # Convert
 #         img = cv2.resize(img, (512, 512))
