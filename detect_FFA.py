@@ -10,9 +10,7 @@ from FFANet import FFA
 from torch.utils.data import DataLoader
 import torch
 import torch.backends.cudnn as cudnn
-from my_datasets import  LoadImages , letterbox
-from my_general import check_img_size, check_requirements, increment_path
-
+from my_datasets import  LoadImages 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=str,
@@ -28,16 +26,14 @@ FFA = FFA().to(device)
 FFA = torch.nn.DataParallel(FFA, device_ids=device_ids)
 
 def detect(opt , task ):
-
     source = opt.source
     if task == 'derain':
-        FFA.load_state_dict(torch.load('snapshots/FFA_derain.pth' ,  map_location = device))
+        FFA.load_state_dict(torch.load('snapshots/FFA_derain.pth' ,  map_location = 'cpu'))
     if task == 'denoisy':
-        FFA.load_state_dict(torch.load('snapshots/FFA_denoisy.pth', map_location = device))
+        FFA.load_state_dict(torch.load('snapshots/FFA_denoisy.pth', map_location = 'cpu'))
     if task == 'dehaze':
-        FFA.load_state_dict(torch.load('snapshots/FFA_dehaze.pth' , map_location = device))
+        FFA.load_state_dict(torch.load('snapshots/FFA_dehaze.pth' , map_location = 'cpu'))
     dataset = LoadImages(source, img_size=640, stride=32)
-
 
     with torch.no_grad():
         FFA.eval()
@@ -63,8 +59,6 @@ def detect(opt , task ):
                         clean = clean.cpu().numpy()
                         clean= clean.squeeze(0).transpose(1, 2, 0)
                         clean = clean[:, :, ::-1]
-                        # clean = cv2.resize(clean, (256, 256))
-
                         out.write(clean)
                     else:
                         break
@@ -85,10 +79,6 @@ def detect(opt , task ):
                     # clean = clean * 255
                     # clean = clean[:, :, ::-1]
                     # cv2.imwrite(f'runs/detect/clean.jpg', clean)
-
-
-
-
 
 if __name__ == '__main__':
     detect(opt, opt.task)
