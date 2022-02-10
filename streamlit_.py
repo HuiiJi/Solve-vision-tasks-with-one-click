@@ -42,7 +42,7 @@ if __name__ == '__main__':
             with st.spinner(text='资源加载中...'):
                 st.sidebar.image(uploaded_file)
                 picture = Image.open(uploaded_file)
-                picture = picture.save(f'data/images/{uploaded_file.name}')
+#                 picture = picture.save(f'data/images/{uploaded_file.name}')
                 opt.source = f'data/images/{uploaded_file.name}'
         else:
             is_valid = False
