@@ -43,7 +43,7 @@ if __name__ == '__main__':
                 st.sidebar.image(uploaded_file)
                 picture = Image.open(uploaded_file)
                 picture = picture.save(f'data/images/{uploaded_file.name}')
-                opt.source = f'data/image/{uploaded_file.name}'
+                opt.source = f'data/images/{uploaded_file.name}'
         else:
             is_valid = False
 
