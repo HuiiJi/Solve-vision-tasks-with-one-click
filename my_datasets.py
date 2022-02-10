@@ -161,8 +161,8 @@ class LoadImages:  # for inference
         else:
             self.cap = None
             self.count += 1
-            path = path.split('\\')[-1]
-            img0 = cv2.imread('data/images/' + path)  # BGR
+#             path = path.split('\\')[-1]
+            img0 = cv2.imread (path)  # BGR
             img0 = cv2.resize(img0 ,(int( img0.shape[1] / 2) , int (img0.shape[0]/2)))
             img0 = img0[:, :, ::-1].transpose(2, 0, 1)
             img0 = np.ascontiguousarray(img0)
