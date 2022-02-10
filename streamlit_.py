@@ -55,8 +55,9 @@ if __name__ == '__main__':
                 
                 st.sidebar.video(uploaded_file)
                 
-#                 with open(uploaded_file.name, "wb") as f:
-#                     f.write(uploaded_file.getbuffer())
+                with open(uploaded_file.name, "wb") as f:
+                    f.write(uploaded_file.getbuffer())
+                    
                 opt.source = f'data/videos/{uploaded_file.name}'
         else:
             is_valid = False
@@ -100,7 +101,6 @@ if __name__ == '__main__':
                 with st.spinner(text='Preparing Images'):
                     st.image('runs/detect/clean.jpg')
 
-
             else:
                 with open('runs/detect/clean.mp4', "rb") as file:
                     btn = st.download_button(
@@ -127,8 +127,6 @@ if __name__ == '__main__':
                     st.image('runs/detect/clean.jpg')
 
             else:
-                
-                
                 with open('runs/detect/clean.mp4', "rb") as file:
                      btn = st.download_button(
                         label="点击下载",
