@@ -1,4 +1,4 @@
-om io import StringIO
+from io import StringIO
 from pathlib import Path
 import streamlit as st
 from detect_DMSHN import detect
