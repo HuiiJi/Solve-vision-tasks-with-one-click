@@ -42,7 +42,7 @@ def detect(opt , task ):
                 fps = cap.get(cv2.CAP_PROP_FPS)
                 w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                 h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc('M', 'P', '4', 'V'), fps, (int(w/2), int(h/2)), True)
+                out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc('U', '2', '6', '3'), fps, (int(w/2), int(h/2)), True)
                 while (cap.isOpened()):
                     ret_val, img = cap.read()
                     if ret_val :
@@ -66,7 +66,6 @@ def detect(opt , task ):
                 out.release()
            else:
                 for path, img0, cap, mode in dataset:
-
                     img0 = torch.from_numpy(img0).float() /255
                     img0 = img0.to(device)
                     if img0.ndimension() == 3:
