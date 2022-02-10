@@ -127,12 +127,12 @@ if __name__ == '__main__':
             else:
                 
                 
-                  with open('runs/detect/clean.mp4', "rb") as file:
-                    btn = st.download_button(
+                with open('runs/detect/clean.mp4', "rb") as file:
+                     btn = st.download_button(
                         label="点击下载",
                         data=file,
                         file_name='clean.mp4',
-                    )
+                        )
 
                 with st.spinner(text='Preparing Video'):
                         st.video('runs/detect/clean.mp4',  format='mp4', start_time=0)
