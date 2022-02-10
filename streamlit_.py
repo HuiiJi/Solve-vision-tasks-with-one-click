@@ -104,15 +104,15 @@ if __name__ == '__main__':
                     st.image('runs/detect/clean.jpg')
 
             else:
-                with open('runs/detect/clean.mp4', "rb") as file:
+                with open('runs/detect/clean.avi', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.mp4',
+                        file_name='clean.avi',
                     )
 
                 with st.spinner(text='Preparing Video'):
-                        st.video('runs/detect/clean.mp4',  format='mp4', start_time=0)
+                        st.video('runs/detect/clean.avi',  format='mp4', start_time=0)
 
 
         if option == "视觉去雾":
@@ -129,15 +129,15 @@ if __name__ == '__main__':
                     st.image('runs/detect/clean.jpg')
 
             else:
-                with open('runs/detect/clean.mp4', "rb") as file:
+                with open('runs/detect/clean.avi', "rb") as file:
                      btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.mp4',
+                        file_name='clean.avi',
                         )
 
                 with st.spinner(text='Preparing Video'):
-                        st.video('runs/detect/clean.mp4',  format='mp4', start_time=0)
+                        st.video('runs/detect/clean.mp4',  format='avi', start_time=0)
                    
               
 
