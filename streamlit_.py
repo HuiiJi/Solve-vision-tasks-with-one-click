@@ -55,8 +55,8 @@ if __name__ == '__main__':
                 
                 st.sidebar.video(uploaded_file)
                 
-                with open(f'data/videos/' + uploaded_file.name, "wb") as f:
-                    f.write(uploaded_file.getbuffer())
+                with open(os.path.join("data", "videos", uploaded_file.name), "wb") as f:
+                  f.write(uploaded_file.getbuffer())
                     
                 opt.source = f'data/videos/{uploaded_file.name}'
         else:
