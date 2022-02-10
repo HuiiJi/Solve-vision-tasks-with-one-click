@@ -52,9 +52,11 @@ if __name__ == '__main__':
         if uploaded_file is not None:
             is_valid = True
             with st.spinner(text='资源加载中...'):
+                
                 st.sidebar.video(uploaded_file)
-                with open(uploaded_file.name, "wb") as f:
-                    f.write(uploaded_file.getbuffer())
+                
+#                 with open(uploaded_file.name, "wb") as f:
+#                     f.write(uploaded_file.getbuffer())
                 opt.source = f'data/videos/{uploaded_file.name}'
         else:
             is_valid = False
