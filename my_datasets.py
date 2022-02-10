@@ -154,16 +154,14 @@ class LoadImages:  # for inference
             raise StopIteration
         path = self.files[self.count]
         if self.mode == 'video':
-            path = path.split('\\')[-1]
-            self.cap = cv2.VideoCapture(f'data/videos/' + path)
+            self.cap = cv2.VideoCapture(path)
             img0 = None
             self.count += 1
         else:
             self.cap = None
             self.count += 1
-#             path = path.split('\\')[-1]
             img0 = cv2.imread (path)  # BGR
-            img0 = cv2.resize(img0 ,(int( img0.shape[1] / 2) , int (img0.shape[0]/2)))
+#             img0 = cv2.resize(img0 ,(int( img0.shape[1] / 2) , int (img0.shape[0]/2)))
             img0 = img0[:, :, ::-1].transpose(2, 0, 1)
             img0 = np.ascontiguousarray(img0)
 
