@@ -28,11 +28,11 @@ FFA = torch.nn.DataParallel(FFA, device_ids=device_ids)
 def detect(opt , task ):
     source = opt.source
     if task == 'derain':
-        FFA.load_state_dict(torch.load('snapshots/FFA_derain.pth' ,  map_location = 'cpu'))
+        FFA.load_state_dict(torch.load('FFA_derain.pth' ,  map_location = 'cpu'))
     if task == 'denoisy':
-        FFA.load_state_dict(torch.load('snapshots/FFA_denoisy.pth', map_location = 'cpu'))
+        FFA.load_state_dict(torch.load('FFA_denoisy.pth', map_location = 'cpu'))
     if task == 'dehaze':
-        FFA.load_state_dict(torch.load('snapshots/FFA_dehaze.pth' , map_location = 'cpu'))
+        FFA.load_state_dict(torch.load('FFA_dehaze.pth' , map_location = 'cpu'))
     dataset = LoadImages(source, img_size=640, stride=32)
 
     with torch.no_grad():
