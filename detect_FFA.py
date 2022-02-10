@@ -42,11 +42,11 @@ def detect(opt , task ):
                 fps = cap.get(cv2.CAP_PROP_FPS)
                 w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                 h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                out = cv2.VideoWriter('runs/detect/clean.avi', cv2.VideoWriter_fourcc('X', 'V', 'I', 'D'), fps, (w, h), True)
+                out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc(*'avc1'), fps, (w, h), True)
                 while (cap.isOpened()):
                     ret_val, img = cap.read()
                     if ret_val :
-                   \
+                   
                         img = img[:, :, ::-1].transpose(2, 0, 1)
                         img = np.ascontiguousarray(img)
                         img = torch.from_numpy(img).float()
