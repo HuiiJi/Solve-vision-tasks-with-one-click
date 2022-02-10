@@ -17,7 +17,7 @@ if __name__ == '__main__':
     st.video('introduction.mp4')
     st.code(code1, language='bash')
     st.subheader('2. 功能')
-    st.write('·当前可实现图像去雾、图像去噪和图像去雨')
+    st.write('·云端仅支持CPU计算，推理时间较久')
     code2 = 'Vision tasks: dehaze, denoisy, derain'
     st.code(code2, language='bash')
     st.subheader('3. 运行区')
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
     if is_valid:
         
-        st.write('tips：云端仅支持CPU处理，处理时间较久~')
+        st.write('tips：若视频无法播放，请点击下载~')
         option = st.selectbox("加载文件成功", ['请选择任务', '视觉去雾', '视觉去雨', '视觉去噪'])
 
         if option == "视觉去雨":
