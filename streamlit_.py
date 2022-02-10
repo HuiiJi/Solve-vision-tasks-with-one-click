@@ -63,6 +63,8 @@ if __name__ == '__main__':
             is_valid = False
 
     if is_valid:
+        
+        st.write('tips：云端仅支持CPU处理，处理时间较久~')
         option = st.selectbox("加载文件成功", ['请选择任务', '视觉去雾', '视觉去雨', '视觉去噪'])
 
         if option == "视觉去雨":
