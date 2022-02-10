@@ -87,7 +87,7 @@ if __name__ == '__main__':
                         file_name='clean.avi',
                     )
                 with st.spinner(text='Preparing Images'):
-                    st.video('runs/detect/clean.avi')
+                    st.video('runs/detect/clean.avi', format='avi', start_time=0)
 
 
         if option == "视觉去噪":
@@ -112,7 +112,7 @@ if __name__ == '__main__':
                     )
 
                 with st.spinner(text='Preparing Video'):
-                        st.video('runs/detect/clean.avi',  format='mp4', start_time=0)
+                        st.video('runs/detect/clean.avi',  format='avi', start_time=0)
 
 
         if option == "视觉去雾":
@@ -137,7 +137,7 @@ if __name__ == '__main__':
                         )
 
                 with st.spinner(text='Preparing Video'):
-                        st.video('runs/detect/clean.mp4',  format='avi', start_time=0)
+                        st.video('runs/detect/clean.avi',  format='avi', start_time=0)
                    
               
 
