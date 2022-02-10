@@ -42,7 +42,7 @@ def detect(opt , task ):
                 fps = cap.get(cv2.CAP_PROP_FPS)
                 w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                 h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc('X','2','6','4'), fps, (int(w/2), int(h/2)), True)
+                out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc('I', '4', '2', '0'), fps, (int(w/2), int(h/2)), True)
                 while (cap.isOpened()):
                     ret_val, img = cap.read()
                     if ret_val :
