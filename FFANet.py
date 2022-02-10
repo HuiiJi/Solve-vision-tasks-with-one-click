@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
-from thop import profile
-from torchsummary import summary
+# from thop import profile
+# from torchsummary import summary
 
 
 def default_conv(in_channels, out_channels, kernel_size, bias=True):
@@ -157,8 +157,8 @@ class Discriminator(nn.Module):
         return torch.sigmoid(self.net(x).view(batch_size))
 
 if __name__ == '__main__':
-    summary(FFA().cuda(), input_size= (3, 256, 256), batch_size= 1)
-    flops, params = profile(FFA(), inputs = (torch.randn(1, 3, 256, 256), ))
+#     summary(FFA().cuda(), input_size= (3, 256, 256), batch_size= 1)
+#     flops, params = profile(FFA(), inputs = (torch.randn(1, 3, 256, 256), ))
     print('flops: ', flops, 'params: ', params)
     print('flops: %.2f M, params: %.2f M' % (flops / 1000000.0, params / 1000000.0))
 pass
