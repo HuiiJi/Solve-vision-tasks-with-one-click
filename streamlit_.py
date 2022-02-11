@@ -65,7 +65,7 @@ if __name__ == '__main__':
     if is_valid:
         
         st.write('tips：若视频无法播放，请点击下载~')
-        option = st.selectbox("加载文件成功", ['请选择任务', '视觉去雾', '视觉去雨', '视觉去噪'， '低照度增强'])
+        option = st.selectbox("文件加载成功", ['请选择任务', '视觉去雾', '视觉去雨', '视觉去噪', '低光照增强'])
 
         if option == "视觉去雨":
             detect(opt, task = 'derain')
