@@ -141,7 +141,7 @@ if __name__ == '__main__':
                         
 
         if option == "低光照增强":
-          detect(opt, task='enhencement')
+           detect(opt, task='enhencement')
            if source_index == 0:
               with open('runs/detect/clean.jpg', "rb") as file:
                 btn = st.download_button(
