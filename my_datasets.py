@@ -71,8 +71,8 @@ class LoadImages:  # for inference
             self.cap = None
             self.count += 1
             img0 = cv2.imread (path)  # BGR
-            img = img[:, :, ::-1].transpose(2, 0, 1)
-            img = np.ascontiguousarray(img)
+            img0 = img0[:, :, ::-1].transpose(2, 0, 1)
+            img0 = np.ascontiguousarray(img0)
         return path, img0, self.cap, self.mode
 
     def __len__(self):
