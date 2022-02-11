@@ -91,6 +91,9 @@ def detect(opt , task ):
                 out.release()
            else:
                 for path, img0, cap, mode in dataset:
+                
+                    img0 = img0[:, :, ::-1].transpose(2, 0, 1)
+                    img0 = np.ascontiguousarray(img0)
                     img0 = torch.from_numpy(img0).float() /255
                     img0 = img0.to(device)
                     if img0.ndimension() == 3:
