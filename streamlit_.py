@@ -25,8 +25,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--source', type=str,
                         default='', help='source')
-    parser.add_argument('--img-size', type=int, default=640,
-                        help='inference size (pixels)')
     opt = parser.parse_args()
 
     source_button= ("图片上传", "视频上传" )
