@@ -38,6 +38,8 @@ def detect(opt , task ):
     if task == 'enhencement':
       for path, img0, cap, mode in dataset:
         if mode == 'image':
+           clean = img0.transpose(1, 2, 0)
+           clean = clean[:, :, ::-1]
            clean = 255.*((img0 + 1) / 255) ** 0.5 #gamma
            cv2.imwrite(f'runs/detect/clean.jpg', clean)
            return
@@ -91,18 +93,18 @@ def detect(opt , task ):
                 out.release()
            else:
                 for path, img0, cap, mode in dataset:
-                    img0 = img0[:, :, ::-1].transpose(2, 0, 1)
-                    img0 = np.ascontiguousarray(img0)
+    
                     img0 = torch.from_numpy(img0).float() /255
                     img0 = img0.to(device)
                     if img0.ndimension() == 3:
                         img0 = img0.unsqueeze(0)
                     clean, _ = FFA(img0)
-                    clean = clean.cpu().numpy()
-                    clean = clean.squeeze(0).transpose(1, 2, 0)
-                    clean = clean * 255
-                    clean = clean[:, :, ::-1]
-                    cv2.imwrite(f'runs/detect/clean.jpg', clean)
+                    torchvision.utils.save_image(clean, 'runs/detect/clean.jpg')
+#                     clean = clean.cpu().numpy()
+#                     clean = clean.squeeze(0).transpose(1, 2, 0)
+#                     clean = clean * 255
+#                     clean = clean[:, :, ::-1]
+#                     cv2.imwrite(f'runs/detect/clean.jpg', clean)
 
 if __name__ == '__main__':
     detect(opt, opt.task)
