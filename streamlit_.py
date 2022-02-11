@@ -138,7 +138,33 @@ if __name__ == '__main__':
 
                 with st.spinner(text='Preparing Video'):
                         st.video('runs/detect/clean.avi',  format='avi', start_time=0)
-                   
-              
+                        
+
+        if option == "低光照增强":
+          detect(opt, task='enhencement')
+           if source_index == 0:
+              with open('runs/detect/clean.jpg', "rb") as file:
+                btn = st.download_button(
+                    label="点击下载",
+                    data=file,
+                    file_name='clean.jpg',
+                )
+
+            with st.spinner(text='Preparing Images'):
+                st.image('runs/detect/clean.jpg')
+
+        else:
+
+            with open('runs/detect/clean.mp4', "rb") as file:
+                btn = st.download_button(
+                    label="点击下载",
+                    data=file,
+                    file_name='clean.mp4',
+                )
+
+            with st.spinner(text='Preparing Video'):
+                st.video('runs/detect/clean.mp4', format='mp4', start_time=0)
+
+
 
 
