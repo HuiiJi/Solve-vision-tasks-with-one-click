@@ -33,7 +33,32 @@ def detect(opt , task ):
         FFA.load_state_dict(torch.load('FFA_denoisy.pth', map_location = 'cpu'))
     if task == 'dehaze':
         FFA.load_state_dict(torch.load('FFA_dehaze.pth' , map_location = 'cpu'))
-    dataset = LoadImages(source, img_size=640, stride=32)
+    dataset = LoadImages(source)
+    
+      if task == 'enhencement':
+        for path, img0, cap, mode in dataset:
+          if mode == 'image':
+             clean = 255.*((img0 + 1) / 255) ** 0.5 #gamma
+             cv2.imwrite(f'runs/detect/clean.jpg', clean)
+             return
+          else:
+              fps = cap.get(cv2.CAP_PROP_FPS)
+              w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+              h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+              out = cv2.VideoWriter('runs/detect/clean.avi', cv2.VideoWriter_fourcc('I', '4', '2', '0'), fps, (int(w/2), int(h/2)), True)
+              while (cap.isOpened()):
+                  ret_val, img = cap.read()
+                  if ret_val:
+                      img = 255. * ((img + 1) / 255) ** 0.5  # gamma
+                      img = cv2.resize(img, (int(w / 2), int(h / 2)))
+                      clean = np.ascontiguousarray(img).astype(np.uint8)
+                      out.write(clean)
+                  else:
+                      break
+              cap.release()
+              out.release()
+              return
+
 
     with torch.no_grad():
         FFA.eval()
