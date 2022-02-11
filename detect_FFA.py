@@ -5,6 +5,7 @@ import cv2
 import torchvision
 from PIL import Image
 import numpy as np
+from DMSHNet import DMSHN
 from FFANet import FFA
 from torch.utils.data import DataLoader
 import torch
