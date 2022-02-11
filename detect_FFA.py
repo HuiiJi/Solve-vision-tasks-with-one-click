@@ -5,7 +5,6 @@ import cv2
 import torchvision
 from PIL import Image
 import numpy as np
-from DMSHNet import DMSHN
 from FFANet import FFA
 from torch.utils.data import DataLoader
 import torch
@@ -20,26 +19,27 @@ parser.add_argument('--task', type = str, default ='',
 opt = parser.parse_args()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-device_ids = [Id for Id in range(torch.cuda.device_count())]
 
 FFA = FFA().to(device)
-FFA = torch.nn.DataParallel(FFA, device_ids=device_ids)
 
-def detect(opt , task ):
+
+
+def detect(opt , task):
     source = opt.source
+    dataset = LoadImages(source)
+    
     if task == 'derain':
         FFA.load_state_dict(torch.load('FFA_derain.pth' ,  map_location = 'cpu'))
     if task == 'denoisy':
         FFA.load_state_dict(torch.load('FFA_denoisy.pth', map_location = 'cpu'))
     if task == 'dehaze':
         FFA.load_state_dict(torch.load('FFA_dehaze.pth' , map_location = 'cpu'))
-    dataset = LoadImages(source)
     
     if task == 'enhencement':
       for path, img0, cap, mode in dataset:
         if mode == 'image':
-           clean = img0.transpose(1, 2, 0)
-           clean = clean[:, :, ::-1]
+           img0 = img0.transpose(1, 2, 0)
+           img0 = img0[:, :, ::-1]
            clean = 255.*((img0 + 1) / 255) ** 0.5 #gamma
            cv2.imwrite(f'runs/detect/clean.jpg', clean)
            return
@@ -55,13 +55,11 @@ def detect(opt , task ):
                     img = cv2.resize(img, (int(w / 2), int(h / 2)))
                     clean = np.ascontiguousarray(img).astype(np.uint8)
                     out.write(clean)
-        
                 else:
                     break
             cap.release()
             out.release()
             return
-
 
     with torch.no_grad():
         FFA.eval()
@@ -93,18 +91,17 @@ def detect(opt , task ):
                 out.release()
            else:
                 for path, img0, cap, mode in dataset:
-    
                     img0 = torch.from_numpy(img0).float() /255
                     img0 = img0.to(device)
                     if img0.ndimension() == 3:
                         img0 = img0.unsqueeze(0)
                     clean, _ = FFA(img0)
-                    torchvision.utils.save_image(clean, 'runs/detect/clean.jpg')
-#                     clean = clean.cpu().numpy()
-#                     clean = clean.squeeze(0).transpose(1, 2, 0)
-#                     clean = clean * 255
-#                     clean = clean[:, :, ::-1]
-#                     cv2.imwrite(f'runs/detect/clean.jpg', clean)
+#                     torchvision.utils.save_image(clean, 'runs/detect/clean.jpg')
+                    clean = clean.cpu().numpy()
+                    clean = clean.squeeze(0).transpose(1, 2, 0)
+                    clean = clean * 255
+                    clean = clean[:, :, ::-1]
+                    cv2.imwrite(f'runs/detect/clean.jpg', clean)
 
 if __name__ == '__main__':
     detect(opt, opt.task)
