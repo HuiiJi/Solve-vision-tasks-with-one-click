@@ -18,9 +18,7 @@ parser.add_argument('--task', type = str, default ='',
                     help='update all models')
 opt = parser.parse_args()
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-FFA = FFA().to(device)
+FFA = FFA()
 
 
 
