@@ -10,7 +10,7 @@ from FFANet import FFA
 from torch.utils.data import DataLoader
 import torch
 import torch.backends.cudnn as cudnn
-from my_datasets import  LoadImages 
+from my_datasets import  LoadImages
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=str,
@@ -75,8 +75,7 @@ def detect(opt , task ):
                         img = cv2.resize(img, (int(w/2), int(h/2)))
                         img = img[:, :, ::-1].transpose(2, 0, 1)
                         img = np.ascontiguousarray(img)
-                        img = torch.from_numpy(img).float()
-                        img /= 255
+                        img = torch.from_numpy(img).float() / 255
                         img = img.to(device)
                         if img.ndimension() == 3:
                             img = img.unsqueeze(0)
@@ -92,7 +91,6 @@ def detect(opt , task ):
                 out.release()
            else:
                 for path, img0, cap, mode in dataset:
-                
                     img0 = img0[:, :, ::-1].transpose(2, 0, 1)
                     img0 = np.ascontiguousarray(img0)
                     img0 = torch.from_numpy(img0).float() /255
