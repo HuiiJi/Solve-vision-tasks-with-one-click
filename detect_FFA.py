@@ -53,6 +53,7 @@ def detect(opt , task ):
                     img = cv2.resize(img, (int(w / 2), int(h / 2)))
                     clean = np.ascontiguousarray(img).astype(np.uint8)
                     out.write(clean)
+        
                 else:
                     break
             cap.release()
@@ -99,13 +100,11 @@ def detect(opt , task ):
                     if img0.ndimension() == 3:
                         img0 = img0.unsqueeze(0)
                     clean, _ = FFA(img0)
-                    torchvision.utils.save_image(clean, 'runs/detect/clean.jpg')
-
-                    # clean = clean.cpu().numpy()
-                    # clean = clean.squeeze(0).transpose(1, 2, 0)
-                    # clean = clean * 255
-                    # clean = clean[:, :, ::-1]
-                    # cv2.imwrite(f'runs/detect/clean.jpg', clean)
+                    clean = clean.cpu().numpy()
+                    clean = clean.squeeze(0).transpose(1, 2, 0)
+                    clean = clean * 255
+                    clean = clean[:, :, ::-1]
+                    cv2.imwrite(f'runs/detect/clean.jpg', clean)
 
 if __name__ == '__main__':
     detect(opt, opt.task)
