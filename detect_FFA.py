@@ -19,7 +19,12 @@ parser.add_argument('--task', type = str, default ='',
                     help='update all models')
 opt = parser.parse_args()
 
-FFA = FFA()
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device_ids = [Id for Id in range(torch.cuda.device_count())]
+
+FFA = FFA().to(device)
+FFA = torch.nn.DataParallel(FFA, device_ids=device_ids)
+
 
 
 
