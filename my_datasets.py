@@ -30,15 +30,13 @@ class LoadImages:  # for inference
             raise StopIteration
         path = self.files[self.count]
         if self.mode == 'video':
-            path = path.split('\\')[-1]
-            self.cap = cv2.VideoCapture(f'data/videos/' + path)
+            self.cap = cv2.VideoCapture(path)
             img0 = None
             self.count += 1
         else:
             self.cap = None
+            img0 = cv2.imread(path)  # BGR
             self.count += 1
-            path = path.split('\\')[-1]
-            img0 = cv2.imread('data/images/' + path)  # BGR
         return path, img0, self.cap, self.mode
 
     def __len__(self):
