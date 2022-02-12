@@ -2,6 +2,7 @@ from io import StringIO
 from pathlib import Path
 import streamlit as st
 from detect_FFA import detect
+# from detect_DMSHN import detect
 import os
 import sys
 import cv2
@@ -32,11 +33,11 @@ if __name__ == '__main__':
         len(source_button)), format_func=lambda x: source_button[x])
 
     if source_index == 0:
-        uploaded_file = st.sidebar.file_uploader(
-            "上传图片", type=['png', 'jpeg', 'jpg'])
+        uploaded_file = st.sidebar.file_uploader("上传图片", type=['png', 'jpeg', 'jpg'])
 
         if uploaded_file is not None:
             is_valid = True
+
             with st.spinner(text='资源加载中...'):
                 st.sidebar.image(uploaded_file)
                 picture = Image.open(uploaded_file)
@@ -47,24 +48,23 @@ if __name__ == '__main__':
 
     else:
         uploaded_file = st.sidebar.file_uploader("上传视频", type=['mp4'])
+
         if uploaded_file is not None:
             is_valid = True
+
             with st.spinner(text='资源加载中...'):
-                
                 st.sidebar.video(uploaded_file)
-                
+
                 with open(os.path.join("data", "videos", uploaded_file.name), "wb") as f:
-                  f.write(uploaded_file.getbuffer())
-                    
+                    f.write(uploaded_file.getbuffer())
+
                 opt.source = f'data/videos/{uploaded_file.name}'
         else:
             is_valid = False
 
     if is_valid:
-        
         st.write('tips：若视频无法播放，请点击下载~')
         option = st.selectbox("文件加载成功", ['请选择任务', '视觉去雾', '视觉去雨', '视觉去噪', '低光照增强'])
-
         if option == "视觉去雨":
             detect(opt, task = 'derain')
             if source_index == 0:
@@ -76,16 +76,16 @@ if __name__ == '__main__':
                     )
                 with st.spinner(text='Preparing Images'):
                     st.image('runs/detect/clean.jpg')
-
-            else:           
-                with open('runs/detect/clean.avi', "rb") as file:
+            else:
+                with open('runs/detect/clean.mp4', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.avi',
+                        file_name='clean.mp4',
                     )
+
                 with st.spinner(text='Preparing Images'):
-                    st.video('runs/detect/clean.avi')
+                    st.video(open('runs/detect/clean.mp4', 'rb').read())
 
 
         if option == "视觉去噪":
@@ -101,17 +101,18 @@ if __name__ == '__main__':
                 with st.spinner(text='Preparing Images'):
                     st.image('runs/detect/clean.jpg')
 
+
             else:
-                with open('runs/detect/clean.avi', "rb") as file:
+
+                with open('runs/detect/clean.mp4', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.avi',
+                        file_name='clean.mp4',
                     )
 
                 with st.spinner(text='Preparing Video'):
-                        st.video('runs/detect/clean.avi')
-
+                        st.video('runs/detect/clean.mp4')
 
         if option == "视觉去雾":
             detect(opt, task='dehaze')
@@ -125,38 +126,40 @@ if __name__ == '__main__':
 
                 with st.spinner(text='Preparing Images'):
                     st.image('runs/detect/clean.jpg')
+
             else:
-                with open('runs/detect/clean.avi', "rb") as file:
-                     btn = st.download_button(
-                        label="点击下载",
-                        data=file,
-                        file_name='clean.avi',
-                        )
 
-                with st.spinner(text='Preparing Video'):
-                        st.video('runs/detect/clean.avi')
-                        
-
-        if option == "低光照增强":
-           detect(opt, task='enhencement')
-           if source_index == 0:
-               with open('runs/detect/clean.jpg', "rb") as file:
-                  btn = st.download_button(
-                     label="点击下载",
-                     data=file,
-                     file_name='clean.jpg',
-                   )
-               with st.spinner(text='Preparing Images'):
-                  st.image('runs/detect/clean.jpg')
-           else:
-
-                with open('runs/detect/clean.avi', "rb") as file:
+                with open('runs/detect/clean.mp4', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.avi',
+                        file_name='clean.mp4',
                     )
 
                 with st.spinner(text='Preparing Video'):
-                    st.video('runs/detect/clean.avi')
+                        st.video('runs/detect/clean.mp4')
 
+        if option == "低光照增强":
+            detect(opt, task='enhencement')
+            if source_index == 0:
+                with open('runs/detect/clean.jpg', "rb") as file:
+                    btn = st.download_button(
+                        label="点击下载",
+                        data=file,
+                        file_name='clean.jpg',
+                    )
+
+                with st.spinner(text='Preparing Images'):
+                    st.image('runs/detect/clean.jpg')
+
+            else:
+
+                with open('runs/detect/clean.mp4', "rb") as file:
+                    btn = st.download_button(
+                        label="点击下载",
+                        data=file,
+                        file_name='clean.mp4',
+                    )
+
+                with st.spinner(text='Preparing Video'):
+                    st.video('runs/detect/clean.mp4')
