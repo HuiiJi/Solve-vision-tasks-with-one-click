@@ -81,10 +81,10 @@ if __name__ == '__main__':
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.mp4',
+                        file_name='clean.avi',
                     )
                 with st.spinner(text='Preparing Images'):
-                    st.video(open('runs/detect/clean.mp4', 'rb').read())
+                    st.video(open('runs/detect/clean.avi', 'rb').read())
 
 
         if option == "视觉去噪":
