@@ -19,7 +19,7 @@ if __name__ == '__main__':
     st.code(code1, language='bash')
     st.subheader('2. 功能')
     st.write('·云端仅支持CPU计算，推理时间较久')
-    code2 = 'Vision tasks: dehaze, denoisy, derain'
+    code2 = 'Vision tasks: dehaze, denoisy, derain， low_light_enhencement'
     st.code(code2, language='bash')
     st.subheader('3. 运行区')
 
@@ -77,15 +77,15 @@ if __name__ == '__main__':
                 with st.spinner(text='Preparing Images'):
                     st.image('runs/detect/clean.jpg')
             else:
-                with open('runs/detect/clean.mp4', "rb") as file:
+                with open('runs/detect/clean.avi', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.mp4',
+                        file_name='clean.avi',
                     )
                 with st.spinner(text='Preparing Images'):
-                    st.video('runs/detect/clean.mp4')
-#                     st.video(open('runs/detect/clean.mp4', 'rb').read())
+                    st.video('runs/detect/clean.avi')
+
 
 
         if option == "视觉去噪":
