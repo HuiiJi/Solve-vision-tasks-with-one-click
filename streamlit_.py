@@ -77,14 +77,14 @@ if __name__ == '__main__':
                 with st.spinner(text='Preparing Images'):
                     st.image('runs/detect/clean.jpg')
             else:
-                with open('runs/detect/clean.avi', "rb") as file:
+                with open('runs/detect/clean.mp4', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
                         data=file,
-                        file_name='clean.avi',
+                        file_name='clean.mp4',
                     )
                 with st.spinner(text='Preparing Images'):
-                    st.video(open('runs/detect/clean.avi', 'rb').read())
+                    st.video(open('runs/detect/clean.mp4', 'rb').read())
 
 
         if option == "视觉去噪":
