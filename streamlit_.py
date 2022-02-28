@@ -84,7 +84,8 @@ if __name__ == '__main__':
                         file_name='clean.mp4',
                     )
                 with st.spinner(text='Preparing Images'):
-                    st.video(open('runs/detect/clean.mp4', 'rb').read())
+                    st.video('runs/detect/clean.mp4')
+#                     st.video(open('runs/detect/clean.mp4', 'rb').read())
 
 
         if option == "视觉去噪":
