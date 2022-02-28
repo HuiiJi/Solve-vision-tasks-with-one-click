@@ -58,7 +58,7 @@ def detect(opt , task ):
                       img = 255. * ((img + 1) / 255) ** 0.5  # gamma
                       img = cv2.resize(img, (int(w / 2), int(h / 2)))
 #                       clean = np.ascontiguousarray(img).astype(np.uint8)
-                      clean = clean.astype(np.uint8)
+                      clean = img.astype(np.uint8)
                       out.write(clean)
                   else:
                       break
