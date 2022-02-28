@@ -49,7 +49,7 @@ def detect(opt , task ):
               fps = cap.get(cv2.CAP_PROP_FPS)
               w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
               h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-              out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps,
+              out = cv2.VideoWriter(f'runs/detect/clean.mp4', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps,
                                     (int(w / 2), int(h / 2)), True)
               while (cap.isOpened()):
                   ret_val, img = cap.read()
@@ -71,9 +71,9 @@ def detect(opt , task ):
                 fps = cap.get(cv2.CAP_PROP_FPS)
                 w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                 h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                out = cv2.VideoWriter('runs/detect/clean.mp4', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps,
+                out = cv2.VideoWriter(f'runs/detect/clean.mp4', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps,
                                       (int(w / 2), int(h / 2)), True)
-                # out = cv2.VideoWriter('runs/detect/clean.avi', cv2.VideoWriter_fourcc('I' , '4', '2', '0'), fps,
+                # out = cv2.VideoWriter(f'runs/detect/clean.avi', cv2.VideoWriter_fourcc('I' , '4', '2', '0'), fps,
                 #                       (w, h), True)
                 while (cap.isOpened()):
                     ret_val, img = cap.read()
@@ -112,9 +112,6 @@ def detect(opt , task ):
                     clean = clean * 255
                     clean = clean[:, :, ::-1]
                     cv2.imwrite(f'runs/detect/clean.jpg', clean)
-
-
-
 
 
 if __name__ == '__main__':
