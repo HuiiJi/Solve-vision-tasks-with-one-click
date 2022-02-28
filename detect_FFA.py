@@ -49,7 +49,7 @@ def detect(opt , task ):
               fps = cap.get(cv2.CAP_PROP_FPS)
               w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
               h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-              out = cv2.VideoWriter(f'runs/detect/clean.mp4', cv2.VideoWriter_fourcc('U', '2', '6', '3'), fps,
+              out = cv2.VideoWriter(f'runs/detect/clean.mp4', cv2.VideoWriter_fourcc('X', '2', '6', '4'), fps,
                                     (int(w / 2), int(h / 2)))
 
               while (cap.isOpened()):
@@ -57,8 +57,7 @@ def detect(opt , task ):
                   if ret_val:
                       img = 255. * ((img + 1) / 255) ** 0.5  # gamma
                       img = cv2.resize(img, (int(w / 2), int(h / 2)))
-#                       clean = np.ascontiguousarray(img).astype(np.uint8)
-                      clean = img.astype(np.uint8)
+                      clean = np.ascontiguousarray(img).astype(np.uint8)
                       out.write(clean)
                   else:
                       break
