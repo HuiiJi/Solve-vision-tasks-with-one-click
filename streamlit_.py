@@ -152,7 +152,6 @@ if __name__ == '__main__':
                     st.image('runs/detect/clean.jpg')
 
             else:
-
                 with open('runs/detect/clean.mp4', "rb") as file:
                     btn = st.download_button(
                         label="点击下载",
